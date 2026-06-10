@@ -1,6 +1,6 @@
 ---
 name: class-builder
-description: Use when turning a repository into class or lab teaching materials — generates learning objectives, a 10-slide presentation with full memorizable speaker scripts, a lab/demo, and a workbook quiz as structured Markdown, grounded in pedagogy (constructive alignment, 10/20/30, Bloom, problem-solution-reasoning).
+description: Use when turning a repository into class, workshop, or lab teaching materials — generates learning objectives, a 10-slide presentation with full memorizable speaker scripts, a lab/demo, and a workbook quiz as structured Markdown, grounded in pedagogy (constructive alignment, 10/20/30, Bloom, problem-solution-reasoning).
 ---
 
 # Class Builder
