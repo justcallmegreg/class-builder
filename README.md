@@ -96,6 +96,23 @@ tests/fixtures/sample-repo/
 It should read `NOTES.md` first, propose "rate limiting" as the topic, ask the
 four inputs, and pause after writing `00-objectives.md`.
 
+## Export to PDF
+
+Generate content-faithful review PDFs of a class's Markdown (one per artifact)
+before you build the real materials:
+
+```bash
+./export-pdf.sh classes/<topic-slug>
+```
+
+PDFs are written to `classes/<topic-slug>/pdf/`. Mermaid diagrams are left as
+code blocks (not rendered). Requires `pandoc` and a PDF engine:
+
+```bash
+brew install pandoc
+brew install wkhtmltopdf   # or:  pip install weasyprint
+```
+
 ## Repository structure
 
 ```
