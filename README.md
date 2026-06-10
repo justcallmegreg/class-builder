@@ -70,13 +70,15 @@ workshops/<topic-slug>/
 
 ## Install
 
-Symlink this repo into your personal skills directory:
+Run the install script — it symlinks this repo into your personal skills
+directory (`~/.claude/skills/`) and is safe to re-run:
 
 ```bash
-ln -s "$PWD" ~/.claude/skills/workshop-builder
+./install-skill.sh
 ```
 
-Then, in a Claude Code session, point the skill at a repository you want to teach.
+Restart Claude Code (or start a new session) to pick up the skill, then point it
+at a repository you want to teach.
 
 ## Usage
 
