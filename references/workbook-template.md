@@ -1,6 +1,6 @@
 # Workbook template
 
-Output file: `workshops/<topic-slug>/03-workbook.md`.
+Output file: `classes/<topic-slug>/03-workbook.md`.
 
 ## Composition
 - **10 multiple-choice questions** — conceptual (Bloom Understand / Apply /

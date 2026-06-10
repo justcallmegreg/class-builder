@@ -1,8 +1,8 @@
-# Workshop Builder Skill Implementation Plan
+# Class Builder Skill Implementation Plan
 
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
-**Goal:** Build the `workshop-builder` Claude Code skill that turns a repository into staged workshop materials (objectives, 10-slide presentation with full speaker scripts, lab/demo, workbook quiz) as structured Markdown.
+**Goal:** Build the `class-builder` Claude Code skill that turns a repository into staged class materials (objectives, 10-slide presentation with full speaker scripts, lab/demo, workbook quiz) as structured Markdown.
 
 **Architecture:** The skill is a `SKILL.md` workflow plus five `references/` templates. `SKILL.md` drives a 7-step staged process with author checkpoints; each artifact type has a dedicated reference template encoding its pedagogical rules. A `tests/validate.sh` script structurally validates every file (frontmatter, required section markers) and acts as the failing-test harness. A fixture repo under `tests/fixtures/` enables an end-to-end smoke test.
 
@@ -24,7 +24,7 @@ Skill files live at the repo root so the repo itself is the installable skill di
 - `tests/fixtures/sample-repo/` — tiny fixture repo (README.md, NOTES.md, notes/) for the smoke test.
 - `README.md` — project overview + install instructions.
 
-Spec reference: `docs/superpowers/specs/2026-06-10-workshop-builder-design.md`.
+Spec reference: `docs/superpowers/specs/2026-06-10-class-builder-design.md`.
 
 ---
 
@@ -42,7 +42,7 @@ Create `tests/validate.sh`:
 
 ```bash
 #!/usr/bin/env bash
-# Structural validator for the workshop-builder skill.
+# Structural validator for the class-builder skill.
 # Each check greps a required marker in a target file. Prints PASS/FAIL per
 # check and exits non-zero if any check fails.
 set -u
@@ -59,7 +59,7 @@ check() { # check <description> <file> <grep-pattern>
 }
 
 # SKILL.md
-check "SKILL frontmatter name"        SKILL.md "^name: workshop-builder"
+check "SKILL frontmatter name"        SKILL.md "^name: class-builder"
 check "SKILL frontmatter description" SKILL.md "^description: .+"
 check "SKILL step 0 discover"         SKILL.md "Step 0"
 check "SKILL step 6 glossary"         SKILL.md "Step 6"
@@ -109,9 +109,9 @@ Expected: many `FAIL` lines and final `SOME CHECKS FAILED` (exit 1) — only fil
 Create `README.md`:
 
 ```markdown
-# workshop-builder
+# class-builder
 
-A Claude Code skill that turns a repository into workshop teaching materials:
+A Claude Code skill that turns a repository into class teaching materials:
 learning objectives, a short presentation (with full speaker scripts), a
 lab/demo, and a workbook quiz — all as structured Markdown.
 
@@ -123,7 +123,7 @@ taxonomy, and a Problem → Solution → Reasoning narrative arc.
 Symlink this repo into your personal skills directory:
 
 ```bash
-ln -s "$PWD" ~/.claude/skills/workshop-builder
+ln -s "$PWD" ~/.claude/skills/class-builder
 ```
 
 Then invoke it in Claude Code by pointing it at a repository you want to teach.
@@ -136,7 +136,7 @@ bash tests/validate.sh
 
 ## Design
 
-See `docs/superpowers/specs/2026-06-10-workshop-builder-design.md`.
+See `docs/superpowers/specs/2026-06-10-class-builder-design.md`.
 ```
 
 - [ ] **Step 4: Commit**
@@ -167,13 +167,13 @@ Create `SKILL.md`:
 
 ````markdown
 ---
-name: workshop-builder
-description: Use when turning a repository into workshop or lab teaching materials — generates learning objectives, a 10-slide presentation with full memorizable speaker scripts, a lab/demo, and a workbook quiz as structured Markdown, grounded in pedagogy (constructive alignment, 10/20/30, Bloom, problem-solution-reasoning).
+name: class-builder
+description: Use when turning a repository into class or lab teaching materials — generates learning objectives, a 10-slide presentation with full memorizable speaker scripts, a lab/demo, and a workbook quiz as structured Markdown, grounded in pedagogy (constructive alignment, 10/20/30, Bloom, problem-solution-reasoning).
 ---
 
-# Workshop Builder
+# Class Builder
 
-Turn a repository into a coherent workshop: objectives, presentation, lab, and
+Turn a repository into a coherent class: objectives, presentation, lab, and
 workbook. Output is structured **Markdown content** the author finishes manually
 (e.g. building real slides) — not finished decks.
 
@@ -203,29 +203,29 @@ Ask the author (propose candidates/defaults where possible):
 - **Lab style** — hands-on (audience executes) vs. presenter demo.
 - **Prior knowledge** — what the audience already knows.
 
-## Step 2 — Learning objectives → `workshops/<topic-slug>/00-objectives.md`  [APPROVE]
+## Step 2 — Learning objectives → `classes/<topic-slug>/00-objectives.md`  [APPROVE]
 
 Produce 3–5 objectives. Each uses a Bloom action verb suited to the audience
 level and gets a stable ID (`LO1`, `LO2`, …). Every later artifact tags the LO
 it serves. **Get the author's approval before continuing.**
 
-## Step 3 — Presentation → `workshops/<topic-slug>/01-presentation.md`  [REVIEW]
+## Step 3 — Presentation → `classes/<topic-slug>/01-presentation.md`  [REVIEW]
 
 Follow `references/presentation-template.md`. 10 slides max, Problem → Solution →
 Reasoning arc, Mermaid diagrams, plain clean English, `*`-marked abbreviations,
 and a **full memorizable speaker script per slide**. Pause for author review.
 
-## Step 4 — Lab → `workshops/<topic-slug>/02-lab.md`  [REVIEW]
+## Step 4 — Lab → `classes/<topic-slug>/02-lab.md`  [REVIEW]
 
 Follow `references/lab-template.md`. Lab style (from Step 1) changes only
 phrasing. Tag each step with its LO. Pause for author review.
 
-## Step 5 — Workbook → `workshops/<topic-slug>/03-workbook.md`  [REVIEW]
+## Step 5 — Workbook → `classes/<topic-slug>/03-workbook.md`  [REVIEW]
 
 Follow `references/workbook-template.md`. 10 conceptual multiple-choice + 3
 tutor-reviewed free-text questions, each tagged with its LO. Pause for review.
 
-## Step 6 — Glossary → `workshops/<topic-slug>/glossary.md`
+## Step 6 — Glossary → `classes/<topic-slug>/glossary.md`
 
 Collect every `*`-marked short form into the canonical resolution table.
 Follow `references/glossary-rules.md`.
@@ -233,7 +233,7 @@ Follow `references/glossary-rules.md`.
 ## Output layout
 
 ```
-workshops/<topic-slug>/
+classes/<topic-slug>/
   00-objectives.md
   01-presentation.md
   02-lab.md
@@ -254,7 +254,7 @@ Expected: all five `PASS SKILL ...` lines.
 
 ```bash
 git add SKILL.md
-git commit -m "feat: add SKILL.md staged workshop workflow"
+git commit -m "feat: add SKILL.md staged class workflow"
 ```
 
 ---
@@ -352,7 +352,7 @@ Create `references/presentation-template.md`:
 ````markdown
 # Presentation template
 
-Output file: `workshops/<topic-slug>/01-presentation.md`.
+Output file: `classes/<topic-slug>/01-presentation.md`.
 
 ## Rules
 - **10 slides max.** Bucket into the Problem → Solution → Reasoning arc
@@ -420,7 +420,7 @@ Create `references/lab-template.md`:
 ```markdown
 # Lab template
 
-Output file: `workshops/<topic-slug>/02-lab.md`.
+Output file: `classes/<topic-slug>/02-lab.md`.
 
 Lab style (hands-on vs. presenter demo) is set in Step 1 and changes only
 phrasing — copy-paste-ready commands for hands-on, narrated walkthrough for a
@@ -487,7 +487,7 @@ Create `references/workbook-template.md`:
 ```markdown
 # Workbook template
 
-Output file: `workshops/<topic-slug>/03-workbook.md`.
+Output file: `classes/<topic-slug>/03-workbook.md`.
 
 ## Composition
 - **10 multiple-choice questions** — conceptual (Bloom Understand / Apply /
@@ -562,7 +562,7 @@ Create `references/glossary-rules.md`:
 ```markdown
 # Glossary rules — the `*` abbreviation convention
 
-Output file: `workshops/<topic-slug>/glossary.md`.
+Output file: `classes/<topic-slug>/glossary.md`.
 
 ## Marking
 - Write every short form with a trailing `*` at **every occurrence** (not just
@@ -625,7 +625,7 @@ Create `tests/fixtures/sample-repo/README.md`:
 ```markdown
 # Sample Service
 
-A demo HTTP service used to exercise the workshop-builder skill. It exposes a
+A demo HTTP service used to exercise the class-builder skill. It exposes a
 single endpoint and protects it with a token-bucket rate limiter.
 ```
 
@@ -654,10 +654,10 @@ boundary spikes.
 Install the skill and dry-run it against the fixture:
 
 ```bash
-ln -sf "$PWD" ~/.claude/skills/workshop-builder
+ln -sf "$PWD" ~/.claude/skills/class-builder
 ```
 
-Then, in a Claude Code session, invoke `workshop-builder` pointed at
+Then, in a Claude Code session, invoke `class-builder` pointed at
 `tests/fixtures/sample-repo`. Confirm it: reads `NOTES.md` first, proposes
 "rate limiting" as a topic, asks the four Step 1 inputs, and pauses for approval
 after writing `00-objectives.md`. This is a manual check — note the outcome in
@@ -683,7 +683,7 @@ git commit -m "test: add fixture repo and confirm full validation passes"
   sections map to a task.
 - **No placeholders:** every file's full content is inline.
 - **Marker consistency:** the grep patterns in `tests/validate.sh` (Task 1)
-  match the literal strings written in Tasks 2–7 (`name: workshop-builder`,
+  match the literal strings written in Tasks 2–7 (`name: class-builder`,
   `Step 0`, `[APPROVE]`, `speaker script`, `memoriz`, `250`, `Problem`,
   `mermaid`, `prerequisite`, `validation`, `multiple-choice`, `free-text`,
   `rubric`, `LO`, `glossary.md`).

@@ -1,6 +1,6 @@
-# workshop-builder
+# class-builder
 
-A Claude Code skill that turns a repository into a complete, teachable workshop —
+A Claude Code skill that turns a repository into a complete, teachable class —
 **learning objectives**, a short **presentation** (with full memorizable speaker
 scripts), a **lab/demo**, and a **workbook** quiz — all as structured Markdown
 you finish by hand.
@@ -13,7 +13,7 @@ established pedagogy rather than ad-hoc summaries.
 
 Most "explain this repo" output is a flat summary. Teaching is different: it
 needs objectives, a narrative, a hands-on step, and a way to check understanding —
-all pointing at the same goals. workshop-builder encodes that discipline:
+all pointing at the same goals. class-builder encodes that discipline:
 
 - **Constructive alignment** — objectives are derived first; every slide, lab
   step, and quiz question is tagged with the objective (`LOx`) it serves, so the
@@ -44,10 +44,10 @@ Step 6  Glossary    every *-marked abbreviation, resolved   → glossary.md
 
 ### Output layout
 
-One self-contained folder per workshop:
+One self-contained folder per class:
 
 ```
-workshops/<topic-slug>/
+classes/<topic-slug>/
   00-objectives.md
   01-presentation.md
   02-lab.md
@@ -127,5 +127,5 @@ Expected: `ALL CHECKS PASS`.
 
 ## Design & plan
 
-- Spec: `docs/superpowers/specs/2026-06-10-workshop-builder-design.md`
-- Plan: `docs/superpowers/plans/2026-06-10-workshop-builder.md`
+- Spec: `docs/superpowers/specs/2026-06-10-class-builder-design.md`
+- Plan: `docs/superpowers/plans/2026-06-10-class-builder.md`

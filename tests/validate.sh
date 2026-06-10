@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Structural validator for the workshop-builder skill.
+# Structural validator for the class-builder skill.
 # Each check greps a required marker in a target file. Prints PASS/FAIL per
 # check and exits non-zero if any check fails.
 set -u
@@ -16,7 +16,7 @@ check() { # check <description> <file> <grep-pattern>
 }
 
 # SKILL.md
-check "SKILL frontmatter name"        SKILL.md "^name: workshop-builder"
+check "SKILL frontmatter name"        SKILL.md "^name: class-builder"
 check "SKILL frontmatter description" SKILL.md "^description: .+"
 check "SKILL step 0 discover"         SKILL.md "Step 0"
 check "SKILL step 6 glossary"         SKILL.md "Step 6"

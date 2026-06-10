@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
-# Install workshop-builder as a personal Claude Code skill by symlinking this
+# Install class-builder as a personal Claude Code skill by symlinking this
 # repo into ~/.claude/skills/. Idempotent and safe to re-run.
 set -euo pipefail
 
 REPO_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd -P)"
 SKILLS_DIR="${HOME}/.claude/skills"
-LINK="${SKILLS_DIR}/workshop-builder"
+LINK="${SKILLS_DIR}/class-builder"
 
 mkdir -p "$SKILLS_DIR"
 

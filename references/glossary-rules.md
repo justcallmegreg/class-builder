@@ -1,6 +1,6 @@
 # Glossary rules — the `*` abbreviation convention
 
-Output file: `workshops/<topic-slug>/glossary.md`.
+Output file: `classes/<topic-slug>/glossary.md`.
 
 ## Marking
 - Write every short form with a trailing `*` at **every occurrence** (not just

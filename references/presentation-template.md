@@ -1,6 +1,6 @@
 # Presentation template
 
-Output file: `workshops/<topic-slug>/01-presentation.md`.
+Output file: `classes/<topic-slug>/01-presentation.md`.
 
 ## Rules
 - **10 slides max.** Bucket into the Problem → Solution → Reasoning arc

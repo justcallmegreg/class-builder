@@ -1,6 +1,6 @@
 # Lab template
 
-Output file: `workshops/<topic-slug>/02-lab.md`.
+Output file: `classes/<topic-slug>/02-lab.md`.
 
 Lab style (hands-on vs. presenter demo) is set in Step 1 and changes only
 phrasing — copy-paste-ready commands for hands-on, narrated walkthrough for a

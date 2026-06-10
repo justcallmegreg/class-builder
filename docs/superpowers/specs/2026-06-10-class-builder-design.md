@@ -1,13 +1,13 @@
-# Workshop Builder Skill — Design Spec
+# Class Builder Skill — Design Spec
 
 **Date:** 2026-06-10
 **Status:** Draft for review
-**Working name:** `workshop-builder`
+**Working name:** `class-builder`
 
 ## Purpose
 
 A Claude Code skill that turns an existing repository into a coherent set of
-teaching materials for a workshop or lab: a short presentation, a lab/demo, and
+teaching materials for a class or lab: a short presentation, a lab/demo, and
 a workbook (quiz/exam). The skill reads the repo's own knowledge (code, docs,
 notes) and produces all materials as structured **Markdown** — content the
 author finishes manually (e.g. building the actual slides), not finished
@@ -147,11 +147,11 @@ Collect every `*`-marked short form into a canonical resolution table.
 
 ## Output layout
 
-A self-contained folder per workshop, keeping generated teaching material
+A self-contained folder per class, keeping generated teaching material
 separate from the source repo's own docs:
 
 ```
-workshops/<topic-slug>/
+classes/<topic-slug>/
   00-objectives.md
   01-presentation.md
   02-lab.md
@@ -174,7 +174,7 @@ live in `references/` so `SKILL.md` stays lean and only the relevant template is
 pulled per artifact.
 
 ```
-workshop-builder/
+class-builder/
   SKILL.md                    # the staged workflow + pedagogical rules
   references/
     pedagogy.md               # Bloom verbs, alignment rules, the "why" per rule
