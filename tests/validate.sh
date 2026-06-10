@@ -48,6 +48,10 @@ check "workbook LO tag"     references/workbook-template.md "LO"
 check "glossary asterisk rule" references/glossary-rules.md "trailing .\*. |every use|every occurrence"
 check "glossary file"          references/glossary-rules.md "glossary.md"
 
+# export-pdf.sh + integration
+check "export script (pandoc)" export-pdf.sh "pandoc"
+check "SKILL export step"      SKILL.md "export-pdf.sh"
+
 echo "----"
 if [ "$fail" -eq 0 ]; then echo "ALL CHECKS PASS"; else echo "SOME CHECKS FAILED"; fi
 exit "$fail"

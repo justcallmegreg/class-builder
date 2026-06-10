@@ -62,6 +62,19 @@ tutor-reviewed free-text questions, each tagged with its LO. Pause for review.
 Collect every `*`-marked short form into the canonical resolution table.
 Follow `references/glossary-rules.md`.
 
+## Step 7 — Export to PDF (optional)
+
+When the artifacts are ready to review, generate content-faithful review PDFs:
+
+```bash
+./export-pdf.sh classes/<topic-slug>
+```
+
+This runs `pandoc` over every top-level `.md` in the class directory and writes
+PDFs to `classes/<topic-slug>/pdf/`. Mermaid is left as code (not rendered).
+On-demand only — outside the `[APPROVE]`/`[REVIEW]` gates above. Requires
+`pandoc` plus a PDF engine (`wkhtmltopdf` or `weasyprint`).
+
 ## Output layout
 
 ```
